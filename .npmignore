@@ -1,0 +1,26 @@
+# IDE & OS specific
+.DS_Store
+.idea
+
+# Logs
+logs
+*.log
+
+# Dependencies
+node_modules
+
+# Coverage
+coverage
+
+# Sources, tests and builder files
+builder
+src
+test
+internals
+.babelrc
+.eslintignore
+.eslintrc
+.travis.yml
+jest.json
+renovate.json
+rollup.config.js
