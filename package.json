@@ -1,6 +1,6 @@
 {
   "name": "@discolabs/custard-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Javascript library for standardising Shopify checkout customisations.",
   "main": "index",
   "files": [
