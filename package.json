@@ -2,7 +2,10 @@
   "name": "@discolabs/custard-js",
   "version": "0.0.2",
   "description": "Javascript library for standardising Shopify checkout customisations.",
-  "main": "index.js",
+  "main": "index",
+  "files": [
+    "index.*"
+  ],
   "author": "Gavin Ballard",
   "repository": {
     "type": "git",
@@ -10,5 +13,14 @@
   },
   "keywords": [
     "shopify"
-  ]
+  ],
+  "scripts": {
+    "build": "./node_modules/@babel/cli/bin/babel.js index.mjs --out-file index.js",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-modules-commonjs": "^7"
+  }
 }
