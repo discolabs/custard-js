@@ -1,7 +1,7 @@
 # Custard.js
 Custard.js is a lightweight Javascript library that provides a simple, robust, standardised approach to customising online checkout pages for Shopify themes.
 
-It's based on the design patterns and development work conducted at [Disco], especially in relation to our work on the [Submarine] platform, and is designed for use by freelancers, developers and agencies working with [Shopify Plus] merchants.
+It's based on the design patterns and development work conducted at [Disco Labs], especially in relation to our work on the [Submarine] platform, and is designed for use by freelancers, developers and agencies working with [Shopify Plus] merchants.
 
 
 ## Installation and setup
@@ -16,10 +16,11 @@ A typical setup for us would follow these steps:
 3. Create a `checkout-custom` directory within our Javascript sources, add an `index.js` file and individual module files for each checkout customisation;
 4. Ensure checkout customisations are enabled on our target store, and that we include a `checkout-custom.liquid` snippet in the head of our `layout/checkout.liquid` file.
 
-More details on use  
 
 ## Usage
 In the documentation below, we'll show you how to create a Custard module that adds a line of additional help text underneath the "accepts marketing" checkbox on the first step of the checkout. 
+
+<img width="572" alt="custard-help-text-example" src="https://user-images.githubusercontent.com/702485/63477410-57f9c200-c4c8-11e9-888a-25d10dd44d85.png">
 
 For simplicity, in the scenario below we assume that we have the following directory structure for our theme:
 
@@ -32,6 +33,9 @@ For simplicity, in the scenario below we assume that we have the following direc
     ├── layout
     ├── locales
     ├── snippets    
+    │   ├── ...
+    │   ├── checkout-custom.liquid                  # Liquid initialisation snippet for customisations
+    │   └── ...    
     ├── source
     │   └── checkout-custom
     │       ├── accepts-marketing-help-text.js      # Individual Custard module
@@ -112,9 +116,9 @@ Refer to the [release history] for a full list of changes.
 Contributions are very much welcome! Read our [contribution guidelines] for details on submitting pull requests that will be accepted.
 
 
-[Disco]: https://www.discolabs.com
+[Disco Labs]: https://www.discolabs.com
 [Submarine]: https://docs.getsubmarine.com
 [Shopify Plus]: https://www.shopify.com/plus?ref=disco
-[Slate]: #
+[Slate]: https://github.com/Shopify/slate
 [release history]: https://github.com/discolabs/custard-js/releases
 [contribution guidelines]: https://github.com/discolabs/custard-js/blob/master/CONTRIBUTING.md
