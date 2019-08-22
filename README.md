@@ -2,7 +2,13 @@
 Custard.js is a lightweight Javascript library that provides a simple, robust, standardised approach to customising online checkout pages for Shopify themes.
 
 It's based on the design patterns and development work conducted at [Disco Labs], especially in relation to our work on the [Submarine] platform, and is designed for use by freelancers, developers and agencies working with [Shopify Plus] merchants.
+These design patterns, in combination with this Javascript library, comprise the **Custard Approach** for Shopify checkout customisations.
 
+Custard aims to:
+* **Modularise Customisations**: Provides a simple, standardised pattern for defining individual customisations as independent "modules", making customisations more maintainable and reusable.
+* **Extract Boilerplate**: Standardises initialisation and event detection code inside the Javascript framework so that you don't have to deal with it for each customisation you'd like to add.
+* **Handle Checkout Quirks:** Deals with things like asynchronous shipping rate loading on the shipping method checkout step, or re-rendering customisations when Shopify dynamically updates the page, without the developer needing to worry about it.
+* **Keep HTML in HTML:** Provides a nice pattern for defining any HTML you want to add to the Checkout DOM inside a Liquid template, letting you use the power of Liquid and keeping your templates in the one location.
 
 ## Installation and setup
 At Disco, all of our theme development work is done using ES6 modules and Webpack for bundling.
