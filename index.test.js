@@ -1,5 +1,4 @@
-
-import { CustardModule, STEPS_ALL } from './index'
+import { CustardModule, STEPS_ALL } from './index';
 
 test('expected steps in STEPS_ALL', () => {
   expect(STEPS_ALL.length).toBeGreaterThanOrEqual(6);
