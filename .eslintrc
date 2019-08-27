@@ -1,7 +1,6 @@
 {
   "root": true,
   "extends": [
-    "airbnb",
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
@@ -12,26 +11,6 @@
     "node": true,
     "jest": true
   },
-  "settings": {
-    "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "version": "16.0",
-      "flowVersion": "0.53"
-    },
-    "propWrapperFunctions": [
-        // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
-        "forbidExtraProps",
-        {"property": "freeze", "object": "Object"},
-        {"property": "myFavoriteWrapper"}
-    ],
-    "linkComponents": [
-      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
-      "Hyperlink",
-      {"name": "Link", "linkAttribute": "to"}
-    ]
-  },
-
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -75,7 +54,6 @@
           "_destroy"
         ]
       }
-    ],
-    "react/no-did-update-set-state": "off"
+    ]
   }
 }
