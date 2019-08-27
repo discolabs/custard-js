@@ -4,6 +4,7 @@
   "description": "Javascript library for standardising Shopify checkout customisations.",
   "main": "index.js",
   "author": "Gavin Ballard",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/discolabs/custard-js.git"
