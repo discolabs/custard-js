@@ -47,10 +47,9 @@ For simplicity, in the scenario below we assume that we have the following direc
     │       ├── accepts-marketing-help-text.js      # Individual Custard module
     │       └── index.js                            # Entry point for checkout customisations
     ├── templates
-    ├── config.yml                                  # Standard package.json defining dependencies
+    ├── config.yml                                  # Standard Theme Kit configuration file
     ├── package.json                                # Standard package.json defining dependencies
     ├── webpack.checkout-custom.config.js           # Webpack config to compile checkout customisations
-    ├── yarn.lock
     └── ...
 
 We're assuming also that prior to jumping into the code below, we've configured Webpack (or similar) to compile our entrypoint file `source/checkout-custom/index.js` to a browser-ready minified script in `assets/checkout-custom.min.js`.
@@ -97,7 +96,7 @@ window.custard = new Custard([
 
 ### Initialising Custard in checkout
 We're now ready to instantiate our checkout customisations within the checkout's Liquid template.
-We add an `{% include 'checkout-custom' '%}` to the top of `layout/checkout.liquid`, and defined our `checkout-custom.liquid` something like this:
+We add an `{%- include 'checkout-custom' -%}` to the top of `layout/checkout.liquid`, and define our `checkout-custom.liquid` something like this:
 
 ```html
 {%- capture HTML_TEMPLATE_ACCEPTS_MARKETING_HELP_TEXT -%}
