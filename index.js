@@ -31,8 +31,10 @@ export class Custard {
 
   beforeModulesInit() {
     this.modules.forEach(module => {
-      if (typeof module.beforeInit === 'function') {
-        module.beforeInit();
+      if (module.steps().includes(this.step)) {
+        if (typeof module.beforeInit === 'function') {
+          module.beforeInit();
+        }
       }
     });
   }
