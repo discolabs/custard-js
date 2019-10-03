@@ -22,8 +22,19 @@ export class Custard {
       return new moduleClass($, step, options);
     });
 
+    // Call beforeInit hook for each of modules
+    this.beforeModulesInit();
+
     // Register event listeners.
     this.$(document).on('page:load page:change', this.pageChangeHandler.bind(this));
+  }
+
+  beforeModulesInit() {
+    this.modules.forEach(module => {
+      if (typeof module.beforeInit === 'function') {
+        module.beforeInit();
+      }
+    });
   }
 
   pageChangeHandler(event) {
@@ -65,6 +76,8 @@ export class CustardModule {
   selector() {
     return 'document';
   }
+
+  beforeInit() {}
 
   init() {
     this.$element = this.$(this.selector());
