@@ -18,7 +18,7 @@ Custard is therefore currently quite opinionated towards our way of building the
 A typical setup for us would follow these steps:
 
 1. Add the library to our theme (`yarn add @discolabs/custard-js`);
-2. Create a Webpack configuration to compile a `checkout-custom.min.js` file into the theme's `assets` directory;
+2. Create a Webpack configuration to compile a `checkout-custom.min.js` file into the theme's `assets` directory (please review the Troubleshooting section below for a common Webpack gotcha);
 3. Create a `checkout-custom` directory within our Javascript sources, add an `index.js` file and individual module files for each checkout customisation;
 4. Ensure checkout customisations are enabled on our target store, and that we include a `checkout-custom.liquid` snippet in the head of our `layout/checkout.liquid` file.
 
@@ -113,6 +113,67 @@ We add an `{%- include 'checkout-custom' -%}` to the top of `layout/checkout.liq
 </script>
 ```
 
+## Troubleshooting
+Solutions for any common stumbling blocks are provided here.
+If you run into anything yourselves, please raise an issue or open a pull request.
+
+### Browser console reports `Class constructor CustardModule cannot be invoked without 'new'`
+Custard.js is made available as a pure ES6 module - it's not transpiled to ES5 as part of its NPM publishing process, which is common for many NPM modules.
+This means that for browser usage, care has to be taken to ensure that your build process does the work of transpiling Custard to your target Javascript environment.
+
+In a Webpack setup, transpilation is almost always managed by [Babel], but there are usually rules in the Webpack configuration that exclude the `node_modules` directory from transpilation (as they're usually already distributed as ES5 modules).
+That will usually look something like this:
+
+```js
+module.exports = {
+  entry: "./checkout-custom/index.jsx",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: ["babel-loader"]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"]
+  },
+  output: {
+    path: __dirname,
+    publicPath: "/",
+    filename: "../assets/checkout-custom.js"
+  }
+};
+```
+
+With this configuration, Babel won't transpile the Custard.js library and you'll be left with an awkward mix in the output bundle, leading to the browser console reporting `Class constructor CustardModule cannot be invoked without 'new'` errors.
+To resolve this error, we just need to make sure that Babel does transpile Custard by making sure the `exclude` directive for the Babel loader doesn't apply to Disco's modules:
+
+```js
+module.exports = {
+  entry: "./checkout-custom/index.jsx",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules\/(?!@discolabs)/,
+        loader: ["babel-loader"]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"]
+  },
+  output: {
+    path: __dirname,
+    publicPath: "/",
+    filename: "../assets/checkout-custom.js"
+  }
+};
+```
+
+Once you've made the change above, your target bundle should be happily transpiled to ES5.
 
 ## Release History
 Refer to the [release history] for a full list of changes.
@@ -125,5 +186,6 @@ Contributions are very much welcome! Read our [contribution guidelines] for deta
 [Submarine]: https://docs.getsubmarine.com
 [Shopify Plus]: https://www.shopify.com/plus?ref=disco
 [Slate]: https://github.com/Shopify/slate
+[Babel]: https://babeljs.io
 [release history]: https://github.com/discolabs/custard-js/releases
 [contribution guidelines]: https://github.com/discolabs/custard-js/blob/master/CONTRIBUTING.md
