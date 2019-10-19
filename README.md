@@ -18,7 +18,7 @@ Custard is therefore currently quite opinionated towards our way of building the
 A typical setup for us would follow these steps:
 
 1. Add the library to our theme (`yarn add @discolabs/custard-js`);
-2. Create a Webpack configuration to compile a `checkout-custom.min.js` file into the theme's `assets` directory (please review the Troubleshooting section below for a common Webpack gotcha);
+2. Create a Webpack configuration to compile a `checkout-custom.min.js` file into the theme's `assets` directory (please review the [Troubleshooting] section below for a common Webpack gotcha);
 3. Create a `checkout-custom` directory within our Javascript sources, add an `index.js` file and individual module files for each checkout customisation;
 4. Ensure checkout customisations are enabled on our target store, and that we include a `checkout-custom.liquid` snippet in the head of our `layout/checkout.liquid` file.
 
@@ -186,6 +186,7 @@ Contributions are very much welcome! Read our [contribution guidelines] for deta
 [Submarine]: https://docs.getsubmarine.com
 [Shopify Plus]: https://www.shopify.com/plus?ref=disco
 [Slate]: https://github.com/Shopify/slate
+[Troubleshooting]: #troubleshooting
 [Babel]: https://babeljs.io
 [release history]: https://github.com/discolabs/custard-js/releases
 [contribution guidelines]: https://github.com/discolabs/custard-js/blob/master/CONTRIBUTING.md
