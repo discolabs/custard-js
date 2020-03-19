@@ -14,8 +14,8 @@ export const STEPS_ALL = [
 ];
 
 export class Custard {
-  constructor(moduleClasses) {
-    this.moduleClasses = moduleClasses;
+  constructor(modules) {
+    this.modules = modules;
   }
 
   init($, step, options = {}) {
@@ -23,10 +23,7 @@ export class Custard {
     this.step = step;
     this.options = options;
 
-    // Instantiate module classes.
-    this.modules = this.moduleClasses.map(moduleClass => {
-      return new moduleClass($, step, options);
-    });
+    this.attachAdditionalContext();
 
     // Call beforeInit hook for each of modules
     this.beforeModulesInit();
@@ -36,6 +33,26 @@ export class Custard {
       'page:load page:change',
       this.pageChangeHandler.bind(this)
     );
+  }
+
+  attachAdditionalContext() {
+    this.modules = this.modules
+      .map(module => {
+        if (module instanceof CustardModule) {
+          module.$ = this.$;
+          module.step = this.step;
+          module.options = Object.assign(this.options, module.options);
+          return module;
+        }
+
+        if (typeof module === 'function') {
+          const Module = module;
+          return new Module(this.$, this.step, this.options);
+        }
+
+        return null;
+      })
+      .filter(module => module === null);
   }
 
   beforeModulesInit() {
@@ -48,7 +65,7 @@ export class Custard {
     });
   }
 
-  pageChangeHandler(event) {
+  pageChangeHandler() {
     this.modules.forEach(module => {
       if (module.steps().includes(this.step)) {
         if (
