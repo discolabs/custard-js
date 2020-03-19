@@ -24,15 +24,8 @@ export class Custard {
     this.options = options;
 
     this.attachAdditionalContext();
-
-    // Call beforeInit hook for each of modules
-    this.beforeModulesInit();
-
-    // Register event listeners.
-    this.$(document).on(
-      'page:load page:change',
-      this.pageChangeHandler.bind(this)
-    );
+    this.callBeforeInit();
+    this.registerEventListeners();
   }
 
   attachAdditionalContext() {
@@ -55,7 +48,7 @@ export class Custard {
       .filter(module => module === null);
   }
 
-  beforeModulesInit() {
+  callBeforeInit() {
     this.modules.forEach(module => {
       if (module.steps().includes(this.step)) {
         if (typeof module.beforeInit === 'function') {
@@ -65,7 +58,14 @@ export class Custard {
     });
   }
 
-  pageChangeHandler() {
+  registerEventListeners() {
+    this.$(document).on(
+      'page:load page:change',
+      this.pageChangeHandler.bind(this)
+    );
+  }
+
+  pageChangeHandler(event) {
     this.modules.forEach(module => {
       if (module.steps().includes(this.step)) {
         if (
