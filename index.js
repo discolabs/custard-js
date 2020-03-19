@@ -4,10 +4,16 @@ export const STEP_PAYMENT_METHOD = 'payment_method';
 export const STEP_REVIEW = 'review';
 export const STEP_THANK_YOU = 'thank_you';
 export const STEP_ORDER_STATUS = 'order_status';
-export const STEPS_ALL = [STEP_CONTACT_INFORMATION, STEP_SHIPPING_METHOD, STEP_PAYMENT_METHOD, STEP_REVIEW, STEP_THANK_YOU, STEP_ORDER_STATUS];
+export const STEPS_ALL = [
+  STEP_CONTACT_INFORMATION,
+  STEP_SHIPPING_METHOD,
+  STEP_PAYMENT_METHOD,
+  STEP_REVIEW,
+  STEP_THANK_YOU,
+  STEP_ORDER_STATUS
+];
 
 export class Custard {
-
   constructor(moduleClasses) {
     this.moduleClasses = moduleClasses;
   }
@@ -18,7 +24,7 @@ export class Custard {
     this.options = options;
 
     // Instantiate module classes.
-    this.modules = this.moduleClasses.map((moduleClass) => {
+    this.modules = this.moduleClasses.map(moduleClass => {
       return new moduleClass($, step, options);
     });
 
@@ -26,7 +32,10 @@ export class Custard {
     this.beforeModulesInit();
 
     // Register event listeners.
-    this.$(document).on('page:load page:change', this.pageChangeHandler.bind(this));
+    this.$(document).on(
+      'page:load page:change',
+      this.pageChangeHandler.bind(this)
+    );
   }
 
   beforeModulesInit() {
@@ -40,9 +49,12 @@ export class Custard {
   }
 
   pageChangeHandler(event) {
-    this.modules.forEach((module) => {
-      if(module.steps().includes(this.step)) {
-        if(this.step === STEP_SHIPPING_METHOD && this.isPollRefreshElementPresent()) {
+    this.modules.forEach(module => {
+      if (module.steps().includes(this.step)) {
+        if (
+          this.step === STEP_SHIPPING_METHOD &&
+          this.isPollRefreshElementPresent()
+        ) {
           return;
         }
 
@@ -54,11 +66,9 @@ export class Custard {
   isPollRefreshElementPresent() {
     return this.$('[data-poll-refresh]').length;
   }
-
 }
 
 export class CustardModule {
-
   constructor($, step, options) {
     this.$ = $;
     this.step = step;
@@ -85,7 +95,7 @@ export class CustardModule {
     this.$element = this.$(this.selector());
 
     // Bail if already initialised.
-    if(this.$element.hasClass(this.id())) {
+    if (this.$element.hasClass(this.id())) {
       return;
     }
 
@@ -95,5 +105,4 @@ export class CustardModule {
   }
 
   setup() {}
-
 }
