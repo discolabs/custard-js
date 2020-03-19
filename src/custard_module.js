@@ -8,7 +8,7 @@ export default class CustardModule {
   }
 
   id() {
-    throw 'Not implemented';
+    throw new Error('Not implemented');
   }
 
   steps() {

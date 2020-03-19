@@ -55,6 +55,7 @@
           "_destroy"
         ]
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
   }
 }
