@@ -1,7 +1,5 @@
 export default class CustardModule {
-  constructor($, step, options) {
-    this.$ = $;
-    this.step = step;
+  constructor(options) {
     this.options = options;
 
     this.$element = null;

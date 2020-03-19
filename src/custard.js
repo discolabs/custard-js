@@ -19,21 +19,17 @@ export default class Custard {
   attachAdditionalContext() {
     this.modules = this.modules
       .map(module => {
-        if (module instanceof CustardModule) {
-          module.$ = this.$;
-          module.step = this.step;
-          module.options = Object.assign(this.options, module.options);
-          return module;
-        }
-
-        if (typeof module === 'function') {
+        if (module.__proto__.name === 'CustardModule') {
           const Module = module;
-          return new Module(this.$, this.step, this.options);
+          module = new Module(this.options);
         }
 
-        return null;
+        module.$ = this.$;
+        module.step = this.step;
+        module.options = Object.assign(this.options, module.options);
+        return module;
       })
-      .filter(module => module === null);
+      .filter(module => module !== null);
   }
 
   callBeforeInit() {
