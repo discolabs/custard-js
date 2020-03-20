@@ -1,5 +1,4 @@
 import { STEP_SHIPPING_METHOD } from './constants';
-import CustardModule from './custard_module';
 
 export default class Custard {
   constructor(modules) {
@@ -19,7 +18,7 @@ export default class Custard {
   initializeModules() {
     this.modules = this.modules
       .map(module => {
-        if (module.__proto__.name === 'CustardModule') {
+        if (Object.getPrototypeOf(module).name === 'CustardModule') {
           const Module = module;
           module = new Module(this.options);
         }
