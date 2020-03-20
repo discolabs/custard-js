@@ -11,12 +11,12 @@ export default class Custard {
     this.step = step;
     this.options = options;
 
-    this.attachAdditionalContext();
+    this.initializeModules();
     this.callBeforeInit();
     this.registerEventListeners();
   }
 
-  attachAdditionalContext() {
+  initializeModules() {
     this.modules = this.modules
       .map(module => {
         if (module.__proto__.name === 'CustardModule') {
