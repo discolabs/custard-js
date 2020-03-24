@@ -1,6 +1,7 @@
 {
   "root": true,
   "extends": [
+    "airbnb-base",
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
@@ -54,6 +55,7 @@
           "_destroy"
         ]
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
   }
 }
