@@ -14,7 +14,6 @@ coverage
 
 # Sources, tests and builder files
 builder
-src
 test
 internals
 .babelrc
