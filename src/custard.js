@@ -18,10 +18,7 @@ export default class Custard {
   initializeModules() {
     this.modules = this.modules
       .map(module => {
-        if (
-          typeof module === 'function' &&
-          /Cannot call a class/.test(Function.prototype.toString.call(module))
-        ) {
+        if (typeof module.id === 'undefined') {
           const Module = module;
           module = new Module(this.options);
         }
