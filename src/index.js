@@ -1,5 +1,5 @@
-import CustardModule from './src/custard_module';
-import Custard from './src/custard';
+import CustardModule from './custard_module';
+import Custard from './custard';
 import {
   STEP_CONTACT_INFORMATION,
   STEP_SHIPPING_METHOD,
@@ -8,7 +8,7 @@ import {
   STEP_THANK_YOU,
   STEP_ORDER_STATUS,
   STEPS_ALL
-} from './src/constants';
+} from './constants';
 
 export {
   Custard,
