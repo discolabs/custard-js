@@ -33,15 +33,9 @@
     "rollup-plugin-terser": "^5.3.0"
   },
   "scripts": {
-    "test": "./node_modules/jest/bin/jest.js",
+    "test": "BABEL_ENV=test ./node_modules/jest/bin/jest.js",
     "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc --ext js .",
-    "build": "rollup -c"
+    "build": "BABEL_ENV=build rollup -c"
   },
-  "dependencies": {},
-  "files": [
-    "dist",
-    "lib",
-    "es",
-    "src"
-  ]
+  "dependencies": {}
 }
