@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
+    "rollup": "^2.3.4",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "^5.3.0"
@@ -35,7 +36,7 @@
   "scripts": {
     "test": "BABEL_ENV=test ./node_modules/jest/bin/jest.js",
     "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc --ext js .",
-    "build": "BABEL_ENV=build rollup -c"
+    "build": "BABEL_ENV=build ./node_modules/rollup/dist/bin/rollup -c"
   },
   "dependencies": {}
 }
