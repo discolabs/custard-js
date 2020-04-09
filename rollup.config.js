@@ -13,7 +13,12 @@ const config = {
       indent: false
     },
     { file: pkg.module, format: 'es', indent: false },
-    { file: 'dist/custard.mjs.js', format: 'es', indent: false, plugins: [terser()] },
+    {
+      file: 'dist/custard.mjs.js',
+      format: 'es',
+      indent: false,
+      plugins: [terser()]
+    },
     {
       file: pkg.unpkg,
       format: 'umd',
