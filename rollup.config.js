@@ -13,7 +13,7 @@ const config = {
       indent: false
     },
     { file: pkg.module, format: 'es', indent: false },
-    { file: 'dist/custard.mjs.js', format: 'es', indent: false },
+    { file: 'dist/custard.mjs.js', format: 'es', indent: false, plugins: [terser()] },
     {
       file: pkg.unpkg,
       format: 'umd',
@@ -24,7 +24,8 @@ const config = {
       file: 'dist/custard.min.js',
       format: 'umd',
       name: 'CustardJS',
-      indent: false
+      indent: false,
+      plugins: [terser()]
     }
   ],
   plugins: [
@@ -37,9 +38,5 @@ const config = {
     })
   ]
 };
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(terser());
-}
 
 export default config;
