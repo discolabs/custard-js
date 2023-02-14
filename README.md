@@ -1,3 +1,5 @@
+> :warning:  _As Shopify has [announced the deprecation of checkout customisations](https://shopify.dev/changelog/checkout-liquid-will-no-longer-work-for-in-checkout-pages-starting-august-13-2024) using `checkout.liquid`, Custard.js has reached the end of its natural life and has been archived._
+
 # Custard.js
 Custard.js is a lightweight Javascript library that provides a simple, robust, standardised approach to customising online checkout pages for Shopify themes.
 
